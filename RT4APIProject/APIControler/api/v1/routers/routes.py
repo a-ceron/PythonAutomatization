@@ -1,50 +1,45 @@
-"""
-APIBot is a FastAPI application that provides a RESTful API for interacting with the chatbot. Here, we define the FastAPI application and its routes.
-"""
+from fastapi import APIRouter, HTTPException, status
 
-from fastapi import FastAPI
-from APITools.Bots.Telegram import TeleBot
+from APIControler.api.v1.services.apiclients import *
+router = APIRouter()
 
-app = FastAPI()
-
-@app.get("/api/v1/alarma/todas")
+@router.get("/alarma/todas")
 async def alarma(prioridad: int):
     """
     This route simulates an alarm system that triggers an alarm when the priority is higher than 5.
     """
     return {"message": "Alarma enviada"}
 
-@app.post("/api/v1/alarma/telegram")
+@router.post("/alarma/telegram")
 async def telegram(body: dict):
     """
     This route simulates an alarm system that sends a message to a Telegram bot when the priority is higher than 5.
     """
-    TeleBot.send_post_message(body)
-    return {"message": "Message sent"}
+    return send_telegram_bot(body)
     
 
-@app.get("/api/v1/alarma/wa")
+@router.get("/alarma/wa")
 async def whatsapp():
     """
     This route simulates an alarm system that sends a message to a WhatsApp bot when the priority is higher than 5.
     """
     return {"message": "Alarma enviada"}
 
-@app.get("/api/v1/alarma/sms")
+@router.get("/alarma/sms")
 async def sms():
     """
     This route simulates an alarm system that sends an SMS message when the priority is higher than 5.
     """
     return {"message": "Alarma enviada"}
 
-@app.get("/api/v1/alarma/email")
+@router.get("/alarma/email")
 async def email():
     """
     This route simulates an alarm system that sends an email when the priority is higher than 5.
     """
     return {"message": "Alarma enviada"}
 
-@app.get("/api/v1/alarma/llamada")
+@router.get("/alarma/llamada")
 async def llamada():
     """
     This route simulates an alarm system that makes a phone call when the priority is higher than 5.

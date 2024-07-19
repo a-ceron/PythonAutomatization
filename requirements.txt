@@ -1,5 +1,5 @@
-pyTelegramBotAPI
 python-dotenv
 twilio 
 fastapi
 requests
+openai

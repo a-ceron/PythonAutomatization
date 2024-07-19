@@ -10,24 +10,30 @@ telegram_token="6910953040:AAHYNzzUVHkXmSfKRA53xsxDMkbEnKGsKic"
 
 
 import requests
-def send_message():
+
+URL = "https://api.telegram.org/bot{}/".format(TOKEN)
+
+def get_updates():
+    url = URL + 'getUpdates'
+    response = requests.get(url)
+    return response.json()
+
+def send_message(chat_id, text):
+    url = URL + 'sendMessage?chat_id={}&text={}'.format(chat_id, text)
+    requests.get(url)
+
+def send_post_message(body):
+    print(body)
     url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
 
-    response = requests.post(url, data={"chat_id": "7269473456", "text": "Este es un mensjae de pruebas"}).json()
+    promp =  f"Atiende este es un mensaje recuperado con cuerpo de una petición {body['text']}"
+
+    response = requests.post(url, data={"chat_id": "7269473456", "text":promp}).json()
 
     print(response)
-# bot = telebot.TeleBot(telegram_token)
-
-# @bot.message_handler(commands=['inicio', 'hello'])
-# def send_welcome(message):
-#     bot.reply_to(message, "Bot iniciado")
 
 
-# @bot.message_handler(func=lambda message: True)
-# def echo_message(message):
-#     print(message)
-#     bot.reply_to(message, message['message'])
+def send_message(body):
+    url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
 
-# def start():    
-#     bot.infinity_polling()
-
+    response = requests.post(url, data={"chat_id": "7269473456", "text": f"Atiende este es un mensaje recuperado con cuerpo de una petición body['text']"}).json()
