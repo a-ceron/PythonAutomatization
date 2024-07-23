@@ -3,6 +3,13 @@ from fastapi import APIRouter, HTTPException, status
 from APIControler.api.v1.services.apiclients import *
 router = APIRouter()
 
+@router.post("/alarma")
+async def almacenar_alarma(body: dict):
+    """
+    This route simulates an alarm system that stores the alarms in a database.
+    """
+    return {"message": "Alarma almacenada"}
+
 @router.get("/alarma/todas")
 async def alarma(prioridad: int):
     """

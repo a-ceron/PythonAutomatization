@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-
 from APIControler.api.v1 import api
 
 app = FastAPI()

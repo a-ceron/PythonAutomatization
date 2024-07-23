@@ -1,5 +1,6 @@
-python-dotenv
-twilio 
 fastapi
+twilio 
+openai # Remove this if the next one works
+python-dotenv
 requests
-openai
+sqlalchemy
