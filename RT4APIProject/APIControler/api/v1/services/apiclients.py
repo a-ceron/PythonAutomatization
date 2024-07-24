@@ -1,8 +1,10 @@
 """"""
-import re
+import re, requests
 
 from APIControler.api.v1.models.crud import EngineRegister
 from . import config
+
+
 
 
 ips_counter = {}
@@ -30,8 +32,6 @@ def send_telegram_bot(body: dict):
     engine = EngineRegister()
     engine.create(new_alarm)
 
-
-
     groups = config.ip_child_group_names
     for _, ips in groups.items():
         if ip in ips:
@@ -49,7 +49,13 @@ def send_telegram_bot(body: dict):
 
     res = {"message": "Mensaje enviado a Telegram", "ip": ip, "counter": ips_counter[ip], "utc_time": utc_time, "alarm_name": alarma_name, "content": f"{msg_level}: IP {ip} con el nombre de {alarma_name}"}
     
-    print(engine.get())
+    url = config.get_token_url_base()
+    payload = {
+        "chat_id": "7269473456",
+        "text": res["content"]
+    }
+    response = requests.post(url+"/sendMessage", data=payload)
     
+    print(response.text)
 
     return res

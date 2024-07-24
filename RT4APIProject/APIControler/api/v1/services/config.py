@@ -1,3 +1,15 @@
+""""""
+import os
+
+def get_telegram_token():
+    """Get the token from the environment"""
+    return os.getenv("TELEGRAM_TOKEN")
+
+def get_token_url_base():
+    """Get the urls from the environment"""
+    return f"{os.getenv("TELEGRAM_URL")}{get_telegram_token()}"
+
+
 ip_group_names = ("group1", "group2", "group3", "group4", "group5")
 ip_child_group_names = {
     "group1": ("calculadorav3.globalmet.mx", "group1_2", "group1_3", "group1_4", "group1_5", "group1_6", "group1_7", "group1_8", "group1_9", "group1_10"),
