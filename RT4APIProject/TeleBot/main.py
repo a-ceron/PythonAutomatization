@@ -16,16 +16,10 @@ def main():
 
     # Check if result has enough entries
     results = res.get("result", [])
-    if len(results) > 2:
-        message = results[-1].get("message", {})
-        n_mensaje = message.get("message_id")
-        user_id = message.get("from", {}).get("id")
-        user_text = message.get("text")
-
-        if n_mensaje and user_id and user_text:
-            if n_mensaje > n_new_mensaje:
-                n_new_mensaje = n_mensaje
-                sender.send_message(user_id, user_text)
+    message = results[-1].get("message", {})
+    user_id = message.get("from", {}).get("id")
+    user_text = message.get("text")
+    sender.send_message(user_id, user_text)
 
 if __name__ == '__main__':
     while True:
