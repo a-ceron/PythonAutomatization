@@ -30,6 +30,10 @@ def get_url_updates():
     """Get the url for the updates"""
     return get_url_builder("getUpdates")
 
+def get_last_update():
+    """Get the url for the last update"""
+    return get_url_builder("getUpdates?offset=-1")
+
 def get_url_send_message():
     """Get the url for the send message"""
     return get_url_builder("sendMessage")
