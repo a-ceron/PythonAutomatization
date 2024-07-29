@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
+from ..services.apiclients import *
 
-from APIControler.api.v1.services.apiclients import *
 router = APIRouter()
 
 @router.post("/alarma")

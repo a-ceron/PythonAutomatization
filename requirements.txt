@@ -1,6 +1,0 @@
-fastapi
-twilio 
-openai # Remove this if the next one works
-python-dotenv
-requests
-sqlalchemy

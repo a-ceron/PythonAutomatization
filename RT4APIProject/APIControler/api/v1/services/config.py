@@ -1,13 +1,19 @@
 """"""
 import os
 
+TELEGRAM_TOKEN="6910953040:AAHYNzzUVHkXmSfKRA53xsxDMkbEnKGsKic"
+TELEGRAM_URL="https://api.telegram.org/bot"
+
+
 def get_telegram_token():
     """Get the token from the environment"""
-    return os.getenv("TELEGRAM_TOKEN")
+    #return os.getenv("TELEGRAM_TOKEN")
+    return TELEGRAM_TOKEN
 
 def get_token_url_base():
     """Get the urls from the environment"""
-    return f"{os.getenv("TELEGRAM_URL")}{get_telegram_token()}"
+    #return f"{os.getenv("TELEGRAM_URL")}{get_telegram_token()}"
+    return f"{TELEGRAM_URL}{get_telegram_token()}"
 
 
 ip_group_names = ("group1", "group2", "group3", "group4", "group5")
