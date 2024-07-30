@@ -13,19 +13,21 @@ def main():
 
     print("Getting updates....")
     res = receiver.get_updates()
-
-    # Check if result has enough entries
-    results = res.get("result", [])
-    if len(results) > 2:
+    
+    try:
+        # Check if result has enough entries
+        results = res.get("result", [])
         message = results[-1].get("message", {})
-        n_mensaje = message.get("message_id")
+        message_id = message.get("message_id")
         user_id = message.get("from", {}).get("id")
         user_text = message.get("text")
 
-        if n_mensaje and user_id and user_text:
-            if n_mensaje > n_new_mensaje:
-                n_new_mensaje = n_mensaje
-                sender.send_message(user_id, user_text)
+        if n_new_mensaje != message_id:
+            n_new_mensaje = message_id
+            sender.send_message(user_id, user_text)
+
+    except IndexError:
+        print("No new messages")
 
 if __name__ == '__main__':
     while True:
