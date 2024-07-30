@@ -1,0 +1,22 @@
+services:
+  fastapi-app:
+    build:
+      context: ./RT4APIProject/APIControler
+      dockerfile: Dockerfile
+    container_name: fastapi-app
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "${APP_PORT_FASTAPI}"]
+
+  telebot-app:
+    build:
+      context: ./RT4APIProject/TeleBot
+      dockerfile: Dockerfile
+    container_name: telebot-app
+    env_file:
+      - .env
+    ports:
+      - "8001:8001"
+    command: ["python", "main.py"]
