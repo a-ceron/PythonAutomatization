@@ -10,6 +10,19 @@ Todo el sistema se desarrollo con Python 3.12 y diferentes librerias para el des
 
 - PingPlotter
 - Docker
+- Clonar este proyecto
+
+---
+
+#### Clonar el proyecto
+
+Si usted no ha clonado este proyecto ejecute el siguiente comando en la ruta que desee instalar la aplicación
+
+`git clone https://github.com/RT4DevSpace/PythonAutomatization.git`
+
+---
+
+
 
 #### Desarrollo
 
@@ -27,7 +40,7 @@ EN DESARROLLO...
 
 Si usted solo quiere probar la herramienta, ejecute el siguiente comando
 
-`docker-compose -b `
+`docker-compose up --build `
 
 ## Recursos
 
@@ -35,4 +48,4 @@ Si usted solo quiere probar la herramienta, ejecute el siguiente comando
 
 [TeleBot](/docs/pages/telebot.md)
 
-[DataBase](./docs/pages/db.md)
+[DataBase](./docs/pages/database.md)

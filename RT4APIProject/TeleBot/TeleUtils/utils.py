@@ -1,15 +1,14 @@
 """This module contains the configuration of the telegram bot"""
 import os
 
-from openai import OpenAI
 
 def get_openai_token():
     """Get the token from the environment"""
     return os.getenv("OPENAI_TOKEN")
 
-def get_openai_client():
-    """Get the urls from the environment"""
-    return OpenAI(api_key=get_openai_token())
+# def get_openai_client():
+#     """Get the urls from the environment"""
+#     return OpenAI(api_key=get_openai_token())
 
 def get_telegram_token():
     """Get the token from the environment"""
