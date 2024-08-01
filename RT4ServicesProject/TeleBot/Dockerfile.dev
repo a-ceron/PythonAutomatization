@@ -1,0 +1,21 @@
+# teebot-app/Dockerfile
+FROM python:3.12-slim
+
+### Varnames
+ARG WORKPATH=/opt/Teebot/src
+
+### Set working directory
+WORKDIR ${WORKPATH}
+
+### Copy required files
+COPY requirements.txt ./
+COPY . ${WORKPATH}
+
+### Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+### Expose port
+EXPOSE 8001
+
+### Command to run the app
+CMD [ "python", "main.py" ]
