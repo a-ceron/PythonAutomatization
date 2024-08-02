@@ -77,6 +77,9 @@ def get_msg_id(historial:dict)->str:
     """Get the message id"""
     return historial.get("result")[-1].get("message").get("message_id")
 
+def get_
+
+
 def get_answer(historial:dict)->tuple:
     """Get the routine"""
     # Importing the database module
@@ -85,10 +88,6 @@ def get_answer(historial:dict)->tuple:
     text = get_message_text(historial)
     msg_id = get_msg_id(historial)
 
-    db = database.SessionLocal()#db = get_local_db_connection()
-    db_bot = crud.get_telebot(db, chat_id)
-
-    print("db_bot", db_bot)
 
     if db_bot is None:
         return None, None
