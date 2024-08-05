@@ -8,4 +8,4 @@ load_dotenv()
 
 def get_database_url():
     """Get the database url"""
-    return environ.get("SQLALCHEMY_DATABASE_URL")
+    return environ.get("DB_BOTS_URL")

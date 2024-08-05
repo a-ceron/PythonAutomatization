@@ -1,6 +1,0 @@
-fastapi==0.95.2
-uvicorn[standard]==0.22.0
-sqlalchemy==2.0.19
-pydantic
-aiofiles==23.1.0   # For asynchronous file operations
-python-dotenv==1.0.0  # For loading environment variables from .env file

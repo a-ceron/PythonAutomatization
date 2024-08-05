@@ -1,5 +1,15 @@
 """
-Archivo de configuración e inicialización de la base de datos
+    database.py
+
+    Conexión a la base de datos.
+
+    Este archivo contiene las clases engine, la sesión y la base, necesarios para la conexión y creación de la base de datos y sus tablas.
+
+    copyrigth 2024-2025
+    Autor: @a-ceron
+    v1.0
+
+    Juilio 2024
 """
 from .config import get_database_url
 
