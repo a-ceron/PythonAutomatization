@@ -190,8 +190,10 @@ def get_answer(historial:dict)->tuple:
         elif temporal_user.get("register") or temporal_user.get('is_active'):
             print("Register process")
             return chat_id, get_register_message(get_user_name(historial))
+       
         print("Non active user process")
         return chat_id, help_interface(get_user_name(historial))
+    
     print("Fin del envio de mensajes")
     return None, None
 
