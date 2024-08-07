@@ -1,8 +1,6 @@
 """"""
 import re, requests
-
 from . import config
-from ..models.crud import EngineRegister
 
 
 
@@ -27,9 +25,6 @@ def send_telegram_bot(body: dict):
         "level": "high",
         "host": ip
     }
-
-    engine = EngineRegister()
-    engine.create(new_alarm)
 
     groups = config.ip_child_group_names
     for _, ips in groups.items():

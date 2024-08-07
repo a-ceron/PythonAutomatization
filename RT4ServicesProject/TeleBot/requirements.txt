@@ -3,3 +3,4 @@ pydantic
 pytz
 requests
 sqlalchemy
+uvicorn

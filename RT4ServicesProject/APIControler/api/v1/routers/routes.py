@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
-from ..services.apiclients import *
+#from ..services.apiclients import *
 
 router = APIRouter()
 
@@ -22,7 +22,9 @@ async def telegram(body: dict):
     """
     This route simulates an alarm system that sends a message to a Telegram bot when the priority is higher than 5.
     """
-    return send_telegram_bot(body)
+    print(body)
+    #return send_telegram_bot(body)
+    return body
     
 
 @router.get("/alarma/wa")
