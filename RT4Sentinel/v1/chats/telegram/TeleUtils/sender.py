@@ -5,7 +5,7 @@ RT4
 2024
 """
 import requests
-from TeleUtils.utils import *
+from .utils import *
 
 # Telegram API
 def send_message(chat_id, text):

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 
+from RT4Sentinel.v1.chats import utils as chatutils
 from .utils import formaters
 from ..database import utils as dbutils
-from ..chats import utils as chatutils
 
 
 router = APIRouter()
@@ -17,7 +17,7 @@ async def pingplotter(body: dict):
         ticket = formaters.get_ticket_from_pingplotter(body, agent)
     
         dbutils.create_ticket(ticket)
-        chatutils.send_message(body)
+        chatutils.send_message(body, agent.chat_id)
 
         return {"message": "Alarm sent!"}
     except Exception as e:
