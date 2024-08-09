@@ -12,9 +12,9 @@ def get_db_gen():
         db.close()
 
 def create_ticket(data:dict):
-    db = get_db_gen()
+    db_gen = get_db_gen()
     try:
-        db_ticket = crud.create_ticket(db)
+        db_ticket = crud.create_ticket(db_gen, data)
         return db_ticket
     except Exception as e:
         print(f"Error al guardar el ticket {data.get("description")}: {e}")
@@ -43,4 +43,3 @@ def close_ticket(ticket_id:int):
     except Exception as e:
         print(f"Error al cerrar el ticket {ticket_id}: {e}")
         return None
-    
