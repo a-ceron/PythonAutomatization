@@ -10,14 +10,18 @@ router = APIRouter()
 @router.post("/alarma/pingplotter")
 async def pingplotter(body: dict):
     """
-    This route simulates an alarm system that sends a message to a Telegram bot when the priority is higher than 5.
+    Recive a pingplotter alarm and save it to the database and send it to chat.
     """
     try:
+        print("Alarm received!")
         agent = dbutils.get_random_agent()
         ticket = formaters.get_ticket_from_pingplotter(body, agent)
-    
         dbutils.create_ticket(ticket)
-        chatutils.send_message(body, agent.chat_id)
+        print("Ticket created!")
+
+        print("Sending alarm to chat...")
+        msg = formaters.get_msg_from_pingplotter(body)
+        chatutils.send_message(msg, agent)
 
         return {"message": "Alarm sent!"}
     except Exception as e:
