@@ -20,7 +20,7 @@ async def pingplotter(body: dict):
         print("Ticket created!")
 
         print("Sending alarm to chat...")
-        msg = formaters.get_msg_from_pingplotter(body)
+        msg = formaters.get_msg_from_pingplotter(body, ticket)
         chatutils.send_message(msg, agent)
 
         return {"message": "Alarm sent!"}

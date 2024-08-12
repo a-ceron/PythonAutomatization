@@ -25,10 +25,10 @@ def get_msg_from_pingplotter(body: dict, ticket:object)->dict:
     ip = body.get('host').get('ip_address')
     print(ip)
     print("Message created!")
-
+    print(ticket)
     return {
         "name": name,
-        "description": pp.get_content_msg(ticket.id, name, time, ip),
+        "description": pp.get_content_msg('alarma', name, time, ip),
         "level": pp.get_level_of_urgency(name),
         "hostname": body.get('host').get('full_display_name')
     }
