@@ -33,19 +33,42 @@ def get_payload(subject:str, content:str, status:str, priority:str)->dict:
             "subject": subject,
             "comment": {
                 "body": content,
-                "public": "true"
+                "public": True
             },
             "status": status
         }
     }
 
 def get_headers():
-    return {"Content-Type": "application/json"}
+    return {"Content-Type": "application/json",}
 
-def make_post_requests(url:str, payload:dict, headers:dict, user_email, api_token)->dict:
-    """Make the request"""
+def create_ticket(url, user_email, api_token, subject, body):
+    # Define the payload with the subject and body of the ticket
+    payload = {
+        "ticket": {
+            "subject": subject,
+            "comment": {
+                "body": body,
+                "public": True
+            },
+            "status": "new"
+        }
+    }
+    
+    # Define the headers for the request
+    headers = get_headers()
+    
+    # Use basic authentication
     auth = HTTPBasicAuth(f'{user_email}/token', api_token)
-    return requests.request(
-        "POST", url, auth=auth, headers=headers, json=payload
+    
+    # Make the POST request
+    response = requests.request(
+        "POST",
+        url,
+        auth=auth,
+        headers=headers,
+        json=payload
     )
-
+    
+    # Return the response for further handling
+    return response

@@ -155,20 +155,14 @@ def update_temporal_user(user_id:int, temporal_user:dict)->None:
 
 def get_answer(historial:dict)->tuple:
     """Get the routine"""
-    print("Getting answer")
 
     # Getting data from the message
     chat_id = get_chat_id(historial)
     text = get_message_text(historial)
     msg_id = get_msg_id(historial)
 
-    print(text, msg_id, chat_id)
     # Getting data from db
     temporal_user = create_temporal_user(get_user_id(historial), get_user_name(historial), msg_id, 0)
-
-    print(temporal_user)
-    print(text, msg_id, chat_id)
-    print(is_new_msg(historial, temporal_user))
 
     return chat_id, text
     # print("Inicia el envio de mensajes")
