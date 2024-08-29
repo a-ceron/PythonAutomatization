@@ -2,14 +2,11 @@
 import requests
 from .utils import *
 
-# WhatsApp API
-def send_message(chat_id, text):
-    """Send a message to the chat"""
-    url = get_url_send_message()
-    requests.post(url, data={"chat_id": chat_id, "text": text}).json()
+def send_message(token:str, chat_id:str, phone:str, message:str):
+    """Send a message to a WhatsApp number"""
+    header, url, body = get_chat_url(token, chat_id, phone, message)
+    response = requests.post(url, headers=header, json=body)
+    if response.status_code != 200:
+        raise WAUtilsError(f"Error sending message: {response.text}")
+    return {"status": "success", "message": response.text}
 
-def send_routine(routine, message):
-    """Send the routine"""
-    print(f"Routine: {routine}")
-    print(f"Message: {message}")
-    return True
