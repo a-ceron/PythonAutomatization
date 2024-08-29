@@ -1,3 +1,17 @@
+"""
+    alarms.py:
+    Recibe señales de servicios externos para ejecutar pipelines de alertas.
+
+
+    ---------------------------------------------------
+    copyrigth 2024-2025
+    Autor: @a-ceron
+    v1.0
+    ---------------------------------------------------
+
+    Última modificación: Agosto 2024
+"""
+
 from . import pingplotter as pp
 
 def get_ticket_from_pingplotter(body: dict, agent: dict)->dict:
