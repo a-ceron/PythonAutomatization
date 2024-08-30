@@ -1,16 +1,18 @@
 """
-    app.py
+    app.py:
+    Servicio principal de la API RESTful de RT4Sentinel
 
-    Inicia el servicio de FastAPI
-
+    ---------------------------------------------------
     copyrigth 2024-2025
     Autor: @a-ceron
     v1.0
+    ---------------------------------------------------
 
-    Julio 2024
+    Última modificación: Agosto 2024
 """
 from fastapi import FastAPI
-from .v1.api.routes import routes
+
+from RT4Sentinel.v1.api import router
 
 app = FastAPI()
-app.include_router(routes.router, prefix="/api/v1")
+app.include_router(router.router, prefix="/api/v1")

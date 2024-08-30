@@ -30,6 +30,9 @@ def main():
                 pytz.timezone('America/Mexico_City'))}] {e}")
 
 if __name__ == '__main__':
-    while True:
-        main()
-        time.sleep(0.1)
+    try:
+        while True:
+            main()
+
+    except Exception as e:
+        raise TeleBotError(e) from e
