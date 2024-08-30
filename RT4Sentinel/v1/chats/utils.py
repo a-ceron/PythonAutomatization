@@ -26,3 +26,12 @@ def send_message(ticket:dict, agent:object)->bool:
     print(zdutils.create_ticket(url, user_email, token, ticket['name'], description))
 
     return True
+
+def create_ticket(ticket:dict, description)->bool:
+    """
+    This function creates a ticket in the database.
+    """
+    url = zdutils.get_zendesk_url_tickets()
+    token = zdutils.get_zendesk_token()
+    user_email = 'agutierrez@rt4.mx'
+    print(zdutils.create_ticket(url, user_email, token, ticket['name'], description))

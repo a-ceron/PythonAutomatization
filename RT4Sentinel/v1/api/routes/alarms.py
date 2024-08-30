@@ -43,9 +43,7 @@ async def pingplotter(body: dict):
         agent = dbutils.get_random_agent()
         ticket = formaters.get_ticket_from_pingplotter(body, agent)
         dbutils.create_ticket(ticket)
-        print("Ticket created!")
-
-        print("Sending alarm to chat...")
+        
         msg = formaters.get_msg_from_pingplotter(body, ticket)
         chatutils.send_message(msg, agent)
 

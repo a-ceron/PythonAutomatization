@@ -15,3 +15,6 @@ curl -i -X POST `
 curl -i -X GET 'https://graph.facebook.com/v20.0/2208521289513563' \
   -H 'Authorization: Bearer 2208521289513563|c9UO8hhwHU3DOEeCE5Qa2Xhhhg4'
 
+# Informacion de los contactos
+curl -X GET "https://graph.facebook.com/v20.0/2208521289513563/phone_numbers
+      ?access_token=2208521289513563|c9UO8hhwHU3DOEeCE5Qa2Xhhhg4"
