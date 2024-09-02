@@ -16,7 +16,7 @@ def send_message(ticket:dict, agent:object)->bool:
     
     tgsender.send_message(tchat_id, description)
     wasender.send_message(
-        "2208521289513563", "3389186c9a7b7ef1840ba7d0c06d90bf", "371073332759638", "525562112408", description
+        "411505772046950", "3389186c9a7b7ef1840ba7d0c06d90bf", "411505772046950", "525562112408", description
     )
 
     # Zendesk
