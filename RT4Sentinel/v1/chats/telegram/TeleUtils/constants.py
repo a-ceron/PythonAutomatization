@@ -13,5 +13,7 @@ urls = {
     "base": "https://api.telegram.org/bot",
     "updates": "/getUpdates",
     "last_update": "/getUpdates?offset=-1",
-    "send_message": "/sendMessage"
+    "send_message": "/sendMessage",
+    "set_webhook": "/setWebhook?url=",
+    "remove_webhook": "/deleteWebhook"
 }
