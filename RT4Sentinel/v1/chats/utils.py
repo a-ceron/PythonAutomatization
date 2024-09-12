@@ -6,6 +6,13 @@ from .zendesk.ZDUtils import utils as zdutils
 def get_telegram_chat_id(agent:object)->tuple:
     return agent.chat_id
 
+def send_telegram_message(chat_id:str, content:str)->bool:
+    """
+    This function sends a message to all bots active in the agent.
+    """
+    
+    tgsender.send_message(chat_id, content)
+    return True
 
 def send_message(ticket:dict, agent:object)->bool:
     """
@@ -15,15 +22,15 @@ def send_message(ticket:dict, agent:object)->bool:
     tchat_id = get_telegram_chat_id(agent)
     
     tgsender.send_message(tchat_id, description)
-    wasender.send_message(
-        "411505772046950", "3389186c9a7b7ef1840ba7d0c06d90bf", "411505772046950", "525562112408", description
-    )
+    # wasender.send_message(
+    #     "411505772046950", "3389186c9a7b7ef1840ba7d0c06d90bf", "411505772046950", "525562112408", description
+    # )
 
     # Zendesk
-    url = zdutils.get_zendesk_url_tickets()
-    token = zdutils.get_zendesk_token()
-    user_email = 'agutierrez@rt4.mx'
-    print(zdutils.create_ticket(url, user_email, token, ticket['name'], description))
+    # url = zdutils.get_zendesk_url_tickets()
+    # token = zdutils.get_zendesk_token()
+    # user_email = 'agutierrez@rt4.mx'
+    # print(zdutils.create_ticket(url, user_email, token, ticket['name'], description))
 
     return True
 

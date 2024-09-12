@@ -81,18 +81,37 @@ def get_template_body(template_id:str, phone:str):
     """Return the body for a chat template"""
     return {
         "messaging_product": "whatsapp",
-        "recipient_type": "individual",
+        #"recipient_type": "individual",
         "to": f"{phone}",
         "type": "template",
         "template": {
             "name": f"{template_id}",
             "language": {
-                "code": "en_US"
+                "code": "es_MX"
             },
+            "components": [
+                {
+                    "type": "body",
+                    "parameters": [
+                        {
+                            "type": "text",
+                            "text": "Date"
+                        },
+                        {
+                            "type": "text",
+                            "text": "Host IP"
+                        },
+                        {
+                            "type": "text",
+                            "text": "Time"
+                        }
+                    ]
+                }
+            ]	
         }
     }
 
-def get_alarm_template(alarm, time, host, level):
+def get_alarm_template(time, host, level):
     data = {
     "messaging_product": "whatsapp",
     "to": "PHONE_NUMBER",
@@ -108,19 +127,15 @@ def get_alarm_template(alarm, time, host, level):
                 "parameters": [
                     {
                         "type": "text",
-                        "text": f"{alarm}"  # Date
+                        "text": f"{host}"  # Date
                     },
                     {
                         "type": "text",
-                        "text": f"{time}"  # Host IP
+                        "text": f"{level}"  # Host IP
                     },
                     {
                         "type": "text",
-                        "text": f"{host}"
-                    },
-                    {
-                        "type": "text",
-                        "text": f"{level}"
+                        "text": f"{time}"
                     }
                 ]
             }

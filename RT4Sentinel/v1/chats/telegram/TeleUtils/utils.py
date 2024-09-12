@@ -25,10 +25,6 @@ class TeleUtilsError(Exception):
 # Load environment variables from .env file
 load_dotenv()
 
-# Environment variables
-def get_openai_token():
-    """Get the token from the environment"""
-    return os.getenv("OPENAI_TOKEN")
 
 def get_telegram_token():
     """Get the token from the environment"""
@@ -57,6 +53,15 @@ def get_url_send_message():
     """Get the url for the send message"""
     return get_url_builder(constants.urls["send_message"])
 
+def set_webhook(url:str):
+    """Set the webhook"""
+    url = get_url_builder(constants.urls["set_webhook"] + url)
+    return url
+
+def remove_webhook()->None:
+    """Remove the webhook"""
+    url = get_url_builder(constants.urls["remove_webhook"])
+    return url
 def get_message_text(historial:dict)->str:
     """Get the message text"""
     return historial.get("result")[-1].get("message").get("text")
@@ -121,38 +126,6 @@ def update_temporal_user(user_id:int, temporal_user:dict)->None:
         raise TeleUtilsError("No se pudo actualizar el usuario temporal.")
     
         
-# def remove_temporal_user(user_id:int)->None:
-#     # TODO: Assign for the queue
-#     # TODO: Update the queue
-#     #TODOD: Update tickets
-#     pass
-
-# def assign_ticket(data:dict)->str:
-#     """Assign a ticket"""
-#     all_users = utils.get_all_users()
-#     for user in all_users:
-#         if user.active:
-#             tickets = utils.get_tickets_by_user(user.id)
-#             if user.max_tickets > len(tickets):
-#                 ticket = utils.create_ticket(user.id, data)
-#                 return  user.chat_id, f"¡Ticket {ticket.id} asignado a {user.username}!\n\n{ticket.description}"
-#     add_queue(data)
-#     return None, "No hay usuarios disponibles para asignar un ticket."
-    
-# def add_queue(data:dict)->None:
-#     """Add a user to the queue"""
-#     try:
-#         with open("queue.pkl", "wb") as file:
-#             queue = pickle.load(file)
-#             queue.append(data)
-
-#             pickle.dump(data, file)
-#     except FileNotFoundError:
-#         with open("queue.pkl", "wb") as file:
-#             pickle.dump([data], file)
-#     finally:
-#         raise TeleUtilsError("No se pudo agregar a la cola.")
-
 def get_answer(historial:dict)->tuple:
     """Get the routine"""
 
@@ -165,38 +138,10 @@ def get_answer(historial:dict)->tuple:
     temporal_user = create_temporal_user(get_user_id(historial), get_user_name(historial), msg_id, 0)
 
     return chat_id, text
-    # print("Inicia el envio de mensajes")
-    # # Check if the message is new
-    # if is_new_msg(historial, temporal_user):
-    #     temporal_user["msg_id"] = msg_id
-    #     update_temporal_user(get_user_id(historial), temporal_user)
-    #     print("Temporal db updated")
-    #     if text.lower() == "/start" or temporal_user.get("on_process"):
-    #         print("Start process")
-    #         return chat_id, start_interface(historial, temporal_user.get("step"), temporal_user)
-    #     elif text.lower() == "/tickets":
-    #         print("Tickets process")
-    #         return chat_id, help_interface(get_user_name(historial))
-    #     elif text.lower() == "/ayuda":
-    #         print("Help process")
-    #         return chat_id, help_interface(get_user_name(historial))
-    #     elif temporal_user.get("register") or temporal_user.get('is_active'):
-    #         print("Register process")
-    #         return chat_id, get_register_message(get_user_name(historial))
-       
-    #     print("Non active user process")
-    #     return chat_id, help_interface(get_user_name(historial))
-    
-    # print("Fin del envio de mensajes")
-    # return None, None
 
 def is_new_msg(historial:dict, temporal_user:dict)->bool:
     """Check if the message is new"""
     return temporal_user.get("msg_id") != get_msg_id(historial)
-
-# def get_non_active_user_message(username:str)->str:
-#     """Get the non active user message"""
-#     return f"¡Hola! {username} ya estas registrado, pero tu cuenta no está activa. Por favor, espera a que un moderador te asigne un ticket."
 
 def get_register_message(username:str)->str:
     """Get the register message"""
