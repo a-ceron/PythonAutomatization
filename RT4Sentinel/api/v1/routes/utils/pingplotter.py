@@ -1,6 +1,6 @@
 """"""
 import re
-from RT4Sentinel.v1.api.utils.standards import varnames as vnames
+from RT4Sentinel.v1.v1.utils.standards import varnames as vnames
 
 def get_str_level(alarm_name:str)->str:
     """

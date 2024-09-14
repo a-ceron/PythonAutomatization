@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import PlainTextResponse
 
 from RT4Sentinel.v1.chats import utils as chatutils
-from RT4Sentinel.v1.api.database import utils as dbutils
+from RT4Sentinel.v1.v1.database import utils as dbutils
 
 router = APIRouter()
 
