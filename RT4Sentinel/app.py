@@ -11,11 +11,24 @@
     Última modificación: Septiembre 2024
 """
 from fastapi import FastAPI
+
 from .api.v1 import router
+from .api.v1.config import configs
+
 
 app = FastAPI(
     swagger_ui_parameters={
         "syntaxHighlight.theme": "obsidian"
     }
 )
-app.include_router(router.router, prefix="/api/v1")
+app.add_middleware(
+    configs.CORSMiddleware,
+    allow_origins=configs.origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+app.include_router(
+    router.router, 
+    prefix="/api/v1"
+)

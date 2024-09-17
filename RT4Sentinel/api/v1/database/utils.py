@@ -24,11 +24,18 @@ def create_ticket(body):
     with get_db_gen() as db:
         return crud.create_ticket(db, body)
     
-
 def get_random_agent():
     with get_db_gen() as db:
         return crud.get_random_agent(db)
     
+def get_user(user_id):
+    with get_db_gen() as db:
+        return crud.get_user_by_id(db, user_id)
+
+def update_user(user_id, user):
+    with get_db_gen() as db:
+        return crud.update_user(db, user_id, user)
+
 def get_all_tickets():
     with get_db_gen() as db:
         return crud.get_all_tickets(db)

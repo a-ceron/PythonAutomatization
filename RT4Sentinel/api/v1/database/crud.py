@@ -13,13 +13,29 @@ def create_user(db_gen: Session, data:dict):
         db_gen.commit()
     except Exception as e:
         db_gen.rollback()
-        raise CRUDError(e)
+        raise CRUDError(f"[db] Error al crear usuario: {e}")
+    finally:
+        db_gen.refresh(user)
+        return user
+    
+def update_user(db_gen: Session, pk:str, data:dict):
+    try:
+        user = get_user_by_id(db_gen, pk)
+        for key, value in data.items():
+            setattr(user, key, value)
+        db_gen.commit()
+    except Exception as e:
+        db_gen.rollback()
+        raise CRUDError(f"[db] Error al actualizar usuario: {e}")
     finally:
         db_gen.refresh(user)
         return user
 
-def get_user_by_id(db_gen: Session, email:str):
-    pass
+def get_user_by_id(db_gen: Session, pk:str):
+    try:
+        return db_gen.query(models.User).filter(models.User.id == pk).first()
+    except Exception as e:
+        raise CRUDError(f"[db] Error al obtener usuario: {e}")
 
 def get_random_agent(db_gen: Session):
     try:

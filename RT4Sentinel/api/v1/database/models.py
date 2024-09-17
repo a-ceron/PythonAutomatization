@@ -28,7 +28,7 @@ class User(Base):
     chat_id: Mapped[int] = mapped_column(Integer, nullable=True, unique=True)
 
     name: Mapped[str] = mapped_column(String, nullable=False)
-    email: Mapped[str] = mapped_column(String, nullable=True)
+    email: Mapped[str] = mapped_column(String, nullable=False)
     phone: Mapped[str] = mapped_column(String, nullable=False)
     
     is_agent: Mapped[bool] = mapped_column(Boolean, default=False)
