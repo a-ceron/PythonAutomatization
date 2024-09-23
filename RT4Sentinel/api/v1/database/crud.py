@@ -18,18 +18,25 @@ def create_user(db_gen: Session, data:dict):
         db_gen.refresh(user)
         return user
     
-def update_user(db_gen: Session, pk:str, data:dict):
+def update_user(db_gen: Session, pk: str, update_data: dict):
     try:
         user = get_user_by_id(db_gen, pk)
-        for key, value in data.items():
-            setattr(user, key, value)
+        
+        if not user:
+            raise CRUDError(status_code=404, detail="User not found.")
+        
+        for key, value in update_data.items():
+            if value is not None and hasattr(user, key):
+                setattr(user, key, value)
+
         db_gen.commit()
-    except Exception as e:
-        db_gen.rollback()
-        raise CRUDError(f"[db] Error al actualizar usuario: {e}")
-    finally:
         db_gen.refresh(user)
+        
         return user
+
+    except Exception as e:
+        db_gen.rollback()  # Rollback changes on error
+        raise CRUDError(status_code=500, detail=f"Error updating user: {e}")
 
 def get_user_by_id(db_gen: Session, pk:str):
     try:

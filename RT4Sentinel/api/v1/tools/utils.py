@@ -57,7 +57,7 @@ class PingPlotterRequest(BaseModel):
 
 class UserCreate(BaseModel):
     name: str
-    email: EmailStr
+    email: str
     phone: str
     chat_id: Optional[int] = None
     is_agent: bool = False
@@ -66,8 +66,17 @@ class UserCreate(BaseModel):
 class UserResponse(BaseModel):
     id: int
     name: str
-    email: EmailStr
+    email: str
     phone: str
     chat_id: Optional[int] = None
     is_agent: bool
     is_active: bool
+
+class UserUpdateResponse(BaseModel):
+    id: Optional[int] = None
+    name: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    chat_id: Optional[int] = None 
+    is_agent: Optional[bool] = None
+    is_active: Optional[bool] = None

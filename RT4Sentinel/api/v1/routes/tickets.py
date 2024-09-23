@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from RT4Sentinel.v1.v1.database import utils as dbutils
+from ..database import utils as dbutils
 
 router = APIRouter()
 

@@ -75,7 +75,7 @@ async def get_all_users():
         apiutils.logger.error(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail="An unexpected error occurred.")
     
-@router.get("/user/{user_id}", response_model=apiutils.UserResponse)
+@router.get("/users/{user_id}", response_model=apiutils.UserResponse)
 async def get_user(user_id: int):
     """Retorna un usuario específico de la base de datos.
 
@@ -98,8 +98,8 @@ async def get_user(user_id: int):
         apiutils.logger.error(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail="An unexpected error occurred.")
 
-@router.put("/user/{user_id}", response_model=apiutils.UserResponse)
-async def update_user(user_id: int, user: apiutils.UserResponse):
+@router.put("/users/{user_id}", response_model=apiutils.UserResponse, status_code=200)
+async def update_user(user_id: int, user:apiutils.UserUpdateResponse):
     """Actualiza los datos de un usuario en la base de datos.
 
     Arguments:

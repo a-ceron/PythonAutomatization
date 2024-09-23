@@ -1,0 +1,5 @@
+# Webhooks
+
+Un webhook es una función de devolución de llamada que se basa en el protocolo HTTP, la cual permite que dos [interfaces de programación de aplicaciones (API)](https://www.redhat.com/es/topics/api/what-are-application-programming-interfaces) se comuniquen a partir de eventos de forma ligera. Es decir, el cliente, del que usualmente consumimos su API, permite proporcionar una URL única además de las condiciones para que se ejecute la consulta (usualmente un POST). Luego de configurarlo, el cliente ya no tendrá ya no tendrá que hacer más consultas al servidor, pues este le 	enviará automáticamente la carga útil correspondiente a la URL del webhook cuando se produzca el evento específico.
+
+La implementación de Webhooks se determina en función del servicio API que se este consumiendo, por ejemplo para Telegram el único requerimento es que la dirección tenga un certificado de privacidad y este puede estar autofirmado. Sin embargo, para WhatsApp, además de deber tener un certificado firmado por terceros, es necesario implemetar una petición post y una petición get con una lógica determinada.

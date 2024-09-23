@@ -36,6 +36,7 @@ class User(Base):
     
     tickets = relationship("Ticket", back_populates="agent")
 
+
 class Ticket(Base):
     __tablename__ = "tickets"
 

@@ -8,9 +8,11 @@ Todo el sistema se desarrollo con Python 3.12 y diferentes librerias para el des
 
 ### Pre-requisitos
 
-- PingPlotter
 - Docker
-- Clonar este proyecto
+
+#### Aplicaciones de terceros
+
+Este endpoint busca funcionar como puerta para levantar alarmas obtenidas de aplicaciones externas. Por el momento, la aplicación con la que se ha provado el funcionamiento es PingPlotter por lo que se recomienda instalar si va a probar la aplicación.
 
 ---
 
@@ -24,14 +26,7 @@ Si usted no ha clonado este proyecto ejecute el siguiente comando en la ruta que
 
 #### Desarrollo
 
-Si usted quiere contribuir al desarrollo de este proyecto debe seguir los siguientes pasos.
-
-
-#### Pruebas
-
-Si usted quiere evaluar que el sistema se ejecute de forma correcta ejecute el siguiente comando, que realiza una serie de tareas para evaluar los diferentes métodos que existen en la aplicación.
-
-EN DESARROLLO...
+Si usted es desarrollador trabaje sobre la rama dev y genere su propia rama. Para probar sus cambios ejecute docker-compose para probar sus cambios. 
 
 #### Producción
 
@@ -41,8 +36,4 @@ Si usted solo quiere probar la herramienta, ejecute el siguiente comando
 
 ## Recursos
 
-[FastAPI](./docs/pages/fastapi.md)
-
-[TeleBot](/docs/pages/telebot.md)
-
-[PingPloter](/docs/pages/pingplotter.md)
+[Documentacion](RT4Sentinel\api\docs\pages\documentacion.md)

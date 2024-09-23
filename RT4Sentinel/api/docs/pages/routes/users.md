@@ -13,6 +13,8 @@ Para interactuar con las herramientas de usuario se debe usar la siguiente ruta
 
 - [POST] Para crear nuevos usuarios
   - `/api/v1/db/user`
+- [PUT] Para actualizar usuario existente
+  - `/api/v1/db/user/<pk>`
 - [GET] Para obtener todos los usuarios
   - `/api/v1/db/users`
 - [GET] Para obtener un usuarios
@@ -31,3 +33,16 @@ Para la petición POST es necesario incluir el siguiente contenido en el cuerpo:
     "is_agent": bool -> Define el nivel del usuaior, False A1, True A2
 }
 ```
+
+## Ejemplos
+
+- Crear un nuevo usuario
+
+![p](../image/post_crear_usuario.png)
+
+- Actualizar usuario
+  ![img](../image/put_actualizar_usuario.png)
+- Obtener un usuario
+  ![obtener_usuario](../image/get_obtener_usuaio.png)
+- Obtener todos los usuarios
+  ![img](../image/get_obtener_usuarios.png)
