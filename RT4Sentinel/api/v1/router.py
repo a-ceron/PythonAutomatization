@@ -13,7 +13,7 @@
 """
 from fastapi import APIRouter
 
-from .routes.alarms import router as alarms_router
+from .routes.alarmas import router as alarms_router
 from .routes.users import router as users_router
 from .routes.tickets import router as tickets_router
 from .routes.webhooks import router as webhooks_router
@@ -25,14 +25,14 @@ router = APIRouter()
 
 router.include_router(
     alarms_router, 
-    prefix="/alarms", 
-    tags=["alarms"], 
+    prefix="/alarmas", 
+    tags=["alarmas"], 
     responses=responses.common_responses
 )
 router.include_router(
     users_router, 
     prefix="/db", 
-    tags=["users"], 
+    tags=["database"], 
     responses=responses.common_responses
 )
 router.include_router(

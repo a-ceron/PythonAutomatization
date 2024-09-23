@@ -44,10 +44,10 @@ def get_user_by_id(db_gen: Session, pk:str):
     except Exception as e:
         raise CRUDError(f"[db] Error al obtener usuario: {e}")
 
-def get_random_agent(db_gen: Session):
+def get_random_user(db_gen: Session):
     try:
-        all_agents = get_all_users(db_gen)
-        return random.choice(all_agents)
+        all_users = get_all_users(db_gen)
+        return random.choice(all_users)
     except Exception as e:
         raise CRUDError(e)
 
@@ -60,11 +60,8 @@ def get_all_users(db_gen: Session):
 
 def create_ticket(db_gen: Session, data:dict):
     try:
-        print("Creating ticket...")
         ticket = models.Ticket(**data)
-        print("Ticket:", ticket)
         db_gen.add(ticket)
-        print("Commiting...")
         db_gen.commit()
     except Exception as e:
         print("Error:", e)

@@ -20,29 +20,22 @@ def get_ticket_from_pingplotter(body: dict, agent: dict)->dict:
     """
     return {
         "name": body.get('alert').get('name'),
-        "description": body.get('timestamps').get('utc_time'),
-        "level": 1,
-        "hostname": body.get('host').get('full_display_name'),
+        "description": pp.get_ticket_description(
+            body.get('alert').get('name'), 
+            body.get('timestamps').get('utc_time'), 
+            body.get('host').get('full_display_name')),
+        "level": pp.get_str_level(body.get('alert').get('name')),
+        "hostname": body.get('host').get('dns_name'),
         "agent_id": agent.id
     }
 
-def get_msg_from_pingplotter(body: dict, ticket:object)->dict:
+def get_msg_from_pingplotter(ticket:object)->dict:
     """
     This function formats the body of a pingplotter alarm and returns a message.
     """
-    print("Creating message...")
-    print(body)
-    name = body.get('alert').get('name')
-    print(name)
-    time = body.get('timestamps').get('utc_time')
-    print(time)
-    ip = body.get('host').get('ip_address')
-    print(ip)
-    print("Message created!")
-    print(ticket)
     return {
-        "name": name,
-        "description": pp.get_content_msg('alarma', name, time, ip),
-        "level": pp.get_level_of_urgency(name),
-        "hostname": body.get('host').get('full_display_name')
+        "name": ticket.get('name'),
+        "description": ticket.get('description'),
+        "level": pp.pingplotter.get('levels').get(ticket.get('level')),
+        "hostname": ticket.get('hostname'),
     }

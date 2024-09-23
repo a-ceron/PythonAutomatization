@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import PlainTextResponse
 
-from ..chats import utils as chatutils
+from ..services import utils as chatutils
 from ..database import utils as dbutils
 
 router = APIRouter()

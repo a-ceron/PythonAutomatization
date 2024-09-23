@@ -1,7 +1,7 @@
 """
     alarms.py
 
-    Define las rutas particulares que contienen la lógica para manejar las alarmas generadas por los diferentes sistemas monitoreados.
+    Endpoints para la gestión de alarmas generadas por los servicios externos.
 
     ---------------------------------------------------
     copyrigth RT4 2024-2025
@@ -15,7 +15,7 @@ from fastapi import APIRouter, HTTPException
 
 from .utils import formaters
 from ..tools import utils as apiutils
-from ..chats import utils as chatutils
+from ..services import utils as serviceutils
 from ..database import utils as dbutils
 
 router = APIRouter()
@@ -37,18 +37,19 @@ async def pingplotter(body: apiutils.PingPlotterRequest):
     """
     try:
         data = body.model_dump()        
+        user = dbutils.get_random_user()
 
-        agent = dbutils.get_random_agent()
-        ticket = formaters.get_ticket_from_pingplotter(data, agent)
-        dbutils.create_ticket(ticket)
-        msg = formaters.get_msg_from_pingplotter(data, ticket)
-        chatutils.send_message(msg, agent)
+        meta_ticket = formaters.get_ticket_from_pingplotter(data, user)
+        ticket = dbutils.create_ticket(meta_ticket)
+        
+        msg = formaters.get_msg_from_pingplotter(meta_ticket)
+        serviceutils.send_message(msg, user)
 
         return {
             "status": "success",
             "message": "Alarm successfully sent.",
             "ticket_id": ticket.id,
-            "agent": agent.name,
+            "user_name": user.name,
             "alert_name": data['alert']['name'],
             "timestamp": data['timestamps']['current_time']
         }
